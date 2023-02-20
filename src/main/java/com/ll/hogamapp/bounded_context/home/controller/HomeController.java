@@ -11,9 +11,8 @@ public class HomeController {
         return "usr/home/main";
     }
 
-    @GetMapping("/home/test")
-    @PreAuthorize("isAuthenticated()")
-    public String showTest() {
-        return "usr/home/main";
+    @GetMapping("/home/about")
+    public String showAbout() {
+        return "usr/home/about";
     }
 }
