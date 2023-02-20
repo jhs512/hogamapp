@@ -6,6 +6,12 @@ spring:
     url: jdbc:mariadb://mariadb-1-service:3306/hogamapp__prod?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: lldjlocal
     password: 1234
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            redirect-uri: https://hogam.app/login/oauth2/code/kakao
   jpa:
     properties:
       hibernate:
@@ -17,7 +23,7 @@ spring:
 logging:
   level:
     root: info
-    com.ll.demo4.app: info
+    com.ll.hogamapp: info
     org.hibernate.type.descriptor.sql: info
 custom:
   genFileDirPath: /gen

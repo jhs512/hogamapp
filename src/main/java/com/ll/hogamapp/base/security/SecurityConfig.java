@@ -1,4 +1,4 @@
-package com.ll.hogamapp.bounded_context.base.security;
+package com.ll.hogamapp.base.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +20,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .httpBasic().disable()
-                .formLogin(
-                        formLogin -> formLogin
-                                .loginPage("/account/login") // GET
-                                .loginProcessingUrl("/account/login") // POST
+                .oauth2Login(
+                        oauth2Login -> oauth2Login
+                                .loginPage("/account/login")
                 )
                 .logout(
                         logout -> logout
