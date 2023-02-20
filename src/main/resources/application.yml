@@ -1,0 +1,36 @@
+server:
+  shutdown: graceful
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+logging:
+  level:
+    root: info
+    com.ll.hogamapp: debug
+    org.hibernate.type.descriptor.sql: trace
+custom:
+  genFileDirPath: c:/temp/hogamapp
+  site:
+    name: hogamapp
+    baseUrl: "http://localhost:8010"
