@@ -1,4 +1,4 @@
-package com.ll.hogamapp.bounded_context.controller;
+package com.ll.hogamapp.bounded_context.accounts.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

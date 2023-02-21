@@ -1,5 +1,7 @@
 package com.ll.hogamapp.base.security;
 
+import com.ll.hogamapp.bounded_context.accounts.service.AccountService;
+import com.ll.hogamapp.bounded_context.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -16,6 +18,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class OAuth2UserService extends DefaultOAuth2UserService {
+    private final AccountService accountService;
+
     // 카카오톡 로그인이 성공할 때 마다 이 함수가 실행된다.
     @Override
     @Transactional
@@ -35,13 +39,11 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         String nickname = null;
         String email = null;
         String username = null;
-        String profileImgUrl = null;
 
         switch (oauthType) {
             case "KAKAO" -> {
                 Map attributesProperties = (Map) attributes.get("properties");
                 nickname = (String) attributesProperties.get("nickname");
-                profileImgUrl = (String) attributesProperties.get("profile_image");
                 email = "%s@kakao.com".formatted(oauthId);
                 username = "KAKAO_%s".formatted(oauthId);
             }
@@ -52,8 +54,10 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         log.debug("nickname: {}", nickname);
         log.debug("email: {}", email);
         log.debug("username: {}", username);
-        log.debug("profileImgUrl: {}", profileImgUrl);
 
-        return oAuth2User;
+        // TODO: 회원가입, 로그인 처리
+        Member member = accountService.whenSocialLogin(oauthType, username, email, nickname);
+
+        return User.from(member);
     }
 }
