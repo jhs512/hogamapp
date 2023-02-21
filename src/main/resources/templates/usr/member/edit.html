@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html layout:decorate="~{usr/layout//layout.html}">
+
+<head>
+    <title>내 정보</title>
+</head>
+
+<body>
+<main layout:fragment="main">
+    <section class="section flex-grow flex flex-col items-center justify-center">
+        <div class="max-w-md w-full px-2 pt-4">
+            <h1 class="font-bold text-lg">
+                <i class="fa-solid fa-user"></i>
+
+                휴대전화번호 입력
+            </h1>
+
+            <script>
+                let MemberModifyPassword__submitDone = false;
+
+                function MemberModifyPassword__submit(form) {
+                    if (MemberModifyPassword__submitDone) {
+                        return;
+                    }
+
+                    form.phoneNo.value = form.phoneNo.value.trim();
+
+                    if (form.phoneNo.value.length == 0) {
+                        warningModal("휴대전화번호를 입력해주세요.");
+                        form.phoneNo.focus();
+
+                        return;
+                    }
+
+                    form.submit();
+                    MemberModifyPassword__submitDone = true;
+                }
+            </script>
+
+
+            <form th:action method="POST" class="flex flex-col gap-3"
+                  onsubmit="MemberModifyPassword__submit(this); return false;">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">회원번호</span>
+                    </label>
+                    <div class="badge badge-primary">1</div>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">별명(노출되지 않습니다.)</span>
+                    </label>
+                    <div class="badge badge-primary" th:text="${@rq.member.nickname}"></div>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">휴대전화번호(한번설정하면 변경할 수 없습니다.)</span>
+                    </label>
+                    <input type="text" name="phoneNo"
+                           placeholder="휴대전화번호(한번설정하면 변경할 수 없습니다.)" class="input input-bordered" maxlength="50"
+                           th:value="${@rq.member.phoneNo}"
+                    >
+                </div>
+
+                <input class="btn btn-primary" type="submit" value="휴대전화번호 설정">
+            </form>
+        </div>
+
+    </section>
+</main>
+
+</body>
+</html>

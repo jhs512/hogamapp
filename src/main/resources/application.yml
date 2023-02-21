@@ -48,7 +48,9 @@ logging:
     com.ll.hogamapp: debug
     org.hibernate.type.descriptor.sql: trace
 custom:
-  genFileDirPath: c:/temp/hogamapp
+  genFile:
+    dirName: gen
+    dirParentPath: c:/temp/hogamapp
   site:
-    name: hogamapp
+    name: 호감앱
     baseUrl: "http://localhost:8010"

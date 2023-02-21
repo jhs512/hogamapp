@@ -56,7 +56,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         log.debug("username: {}", username);
 
         // TODO: 회원가입, 로그인 처리
-        Member member = accountService.whenSocialLogin(oauthType, username, email, nickname);
+        Member member = accountService.whenSocialLogin(oauthType, username, nickname);
 
         return User.from(member);
     }

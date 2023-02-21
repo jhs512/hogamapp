@@ -19,9 +19,17 @@ public class Member extends BaseEntity {
     private String password;
     private String nickname;
     private String oauthType;
-    private String phone;
+    private String phoneNo;
 
     public void updateWhenSocialLogin(String nickname) {
         this.nickname = nickname;
+    }
+
+    public boolean hasPhoneNo() {
+        return phoneNo != null;
+    }
+
+    public void updatePhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 }

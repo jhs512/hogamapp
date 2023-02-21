@@ -19,7 +19,7 @@ public class MemberService {
     }
 
     @Transactional
-    public Member join(String oauthType, String username, String email, String nickname) {
+    public Member join(String oauthType, String username, String nickname) {
         Member member = Member.builder()
                 .oauthType(oauthType)
                 .username(username)
@@ -30,5 +30,10 @@ public class MemberService {
         memberRepository.save(member);
 
         return member;
+    }
+
+    @Transactional
+    public void edit(Member member, String phoneNo) {
+        member.updatePhoneNo(phoneNo);
     }
 }

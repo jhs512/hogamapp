@@ -15,7 +15,7 @@ public class AccountService {
     private final MemberService memberService;
 
     @Transactional
-    public Member whenSocialLogin(String oauthType, String username, String email, String nickname) {
+    public Member whenSocialLogin(String oauthType, String username, String nickname) {
         Optional<Member> memberByUsername = memberService.getMemberByUsername(username);
 
         if (memberByUsername.isPresent()) {
@@ -26,10 +26,10 @@ public class AccountService {
             return member;
         }
 
-        return joinWithSocialLogin(oauthType, username, email, nickname);
+        return joinWithSocialLogin(oauthType, username, nickname);
     }
 
-    private Member joinWithSocialLogin(String oauthType, String username, String email, String nickname) {
-        return memberService.join(oauthType, username, email, nickname);
+    private Member joinWithSocialLogin(String oauthType, String username, String nickname) {
+        return memberService.join(oauthType, username, nickname);
     }
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html layout:decorate="~{usr/layout/layout.html}">
+
+<head>
+    <title>인기</title>
+</head>
+
+<body>
+<main layout:fragment="main">
+    <section class="section flex-grow flex flex-col items-center justify-center">
+        <div class="max-w-md w-full px-4">
+            <div class="text-center">
+                현재
+                <span class="text-red-600" th:text="${#numbers.formatInteger(5, 1, 'COMMA')}"></span>명이
+                당신을 좋아합니다.
+            </div>
+            <div class="mt-2">
+                <div class="text-center">
+                    <i class="fa-solid fa-person-rays"></i>
+                    <span class="text-red-600" th:text="${#numbers.formatInteger(1, 1, 'COMMA')}"></span>명이
+                    당신의 <span class="text-red-600">외모</span>를 좋아합니다.
+                </div>
+
+                <div class="text-center mt-1">
+                    <i class="fa-solid fa-people-line"></i>
+                    <span class="text-red-600" th:text="${#numbers.formatInteger(2, 1, 'COMMA')}"></span>명이
+                    당신의 <span class="text-red-600">성격</span>을 좋아합니다
+                </div>
+
+                <div class="text-center mt-1">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                    <span class="text-red-600" th:text="${#numbers.formatInteger(2, 1, 'COMMA')}"></span>명이
+                    당신의 <span class="text-red-600">능력</span>을 칭찬합니다.
+                </div>
+            </div>
+            <div class="mt-2 flex justify-center">
+                <button class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span class="ml-1">자세한 내역 확인</span>
+                </button>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

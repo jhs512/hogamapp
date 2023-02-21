@@ -26,6 +26,8 @@ logging:
     com.ll.hogamapp: info
     org.hibernate.type.descriptor.sql: info
 custom:
-  genFileDirPath: /gen
+  genFile:
+    dirName: gen
+    dirParentPath: c:/temp/hogamapp
   site:
     baseUrl: "https://hogam.app"
